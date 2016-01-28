@@ -4,7 +4,7 @@ cc_binary(
         "build_sanity.c",
     ],
     deps = [
-        "//openssl:dep_libs"
+        "//:dep_libs"
     ],
     visibility = ["//visibility:public"],
 )
