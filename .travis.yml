@@ -1,11 +1,12 @@
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+      - ubuntu
     packages:
       - gcc-4.8
       - g++-4.8
       - wget
+      - curl
       # Package list from http://bazel.io/docs/install.html
       - openjdk-7-jdk
       - openjdk-7-source
