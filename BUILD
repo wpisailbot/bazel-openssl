@@ -120,6 +120,9 @@ native.cc_library(
 	hdrs = [
 		":gen-hdrs",
 	],
+    linkopts = [
+        "-ldl",
+    ],
     visibility = ["//visibility:public"],
 )
 
