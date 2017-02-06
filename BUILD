@@ -4,7 +4,7 @@ gen_hdrs = [
     "include/openssl/asn1.h",
     "include/openssl/asn1t.h",
     "include/openssl/asn1_mac.h",
-#    "include/openssl/async.h",
+    "include/openssl/async.h",
     "include/openssl/bio.h",
     "include/openssl/blowfish.h",
     "include/openssl/bn.h",
@@ -17,11 +17,12 @@ gen_hdrs = [
     "include/openssl/conf_api.h",
     "include/openssl/conf.h",
     "include/openssl/crypto.h",
+    "include/openssl/ct.h",
     "include/openssl/des.h",
-    "include/openssl/des_old.h",
+#    "include/openssl/des_old.h",
     "include/openssl/dh.h",
     "include/openssl/dsa.h",
-    "include/openssl/dso.h",
+#    "include/openssl/dso.h",
     "include/openssl/dtls1.h",
     "include/openssl/ebcdic.h",
     "include/openssl/ecdh.h",
@@ -34,10 +35,10 @@ gen_hdrs = [
     "include/openssl/hmac.h",
     "include/openssl/idea.h",
 #    "include/openssl/krb_asn.h",
-    "include/openssl/kssl.h",
+#    "include/openssl/kssl.h",
 #    "include/openssl/jpake.h",
 #    "include/openssl/kdf.h",
-    "include/openssl/krb5_asn.h",
+#    "include/openssl/krb5_asn.h",
     "include/openssl/lhash.h",
 #    "include/openssl/md2.h",
     "include/openssl/md4.h",
@@ -54,7 +55,7 @@ gen_hdrs = [
     "include/openssl/pem.h",
     "include/openssl/pkcs12.h",
     "include/openssl/pkcs7.h",
-    "include/openssl/pqueue.h",
+#    "include/openssl/pqueue.h",
     "include/openssl/rand.h",
 #    "include/openssl/rc2.h",
 #    "include/openssl/rc4.h",
@@ -66,7 +67,7 @@ gen_hdrs = [
     "include/openssl/sha.h",
     "include/openssl/srp.h",
     "include/openssl/srtp.h",
-    "include/openssl/ssl23.h",
+#    "include/openssl/ssl23.h",
     "include/openssl/ssl2.h",
     "include/openssl/ssl3.h",
     "include/openssl/ssl.h",
@@ -76,7 +77,7 @@ gen_hdrs = [
     "include/openssl/tls1.h",
     "include/openssl/ts.h",
     "include/openssl/txt_db.h",
-    "include/openssl/ui_compat.h",
+#    "include/openssl/ui_compat.h",
     "include/openssl/ui.h",
     "include/openssl/whrlpool.h",
     "include/openssl/x509.h",
@@ -141,8 +142,9 @@ genrule(
         # For now, just build a generic 64-bit linux version.
         # FIXME Add other configs later
         #OPENSSL_CFG_OPTS="linux-x86_64"
+        CCC=`pwd`/external/org_linaro_components_toolchain_gcc_5_3_1/bin/arm-linux-gnueabihf-
         #if [ "$(TARGET_CPU)" -eq "bbb" ]; then
-          OPENSSL_CFG_OPTS="linux-armv4" # -march=armv7-a"
+          OPENSSL_CFG_OPTS="linux-armv4 --cross-compile-prefix=$${CCC}"
         #fi
 
         OPENSSL_CFG_OPTS+=" no-rc2"
