@@ -102,19 +102,19 @@ stat_libs = [
 	"libcrypto.a",
 ]
 
-native.filegroup(
+filegroup(
     name = 'openssl-exe',
     srcs = [
     "openssl",
     ],
 )
 
-native.filegroup(
+filegroup(
     name = 'outs',
     srcs = stat_libs,
 )
 
-native.cc_library(
+cc_library(
     name = 'dep_libs',
     srcs = stat_libs,
 	hdrs = [
