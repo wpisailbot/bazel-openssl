@@ -89,7 +89,7 @@ native.filegroup(
 	srcs = gen_hdrs,
 )
 
-# This is also conveniently used to get the directory of the 
+# This is also conveniently used to get the directory of the
 # openssl sources via bash's dirname program. Therefore, only
 # allow this to have a single entry
 native.filegroup(
@@ -120,6 +120,7 @@ native.cc_library(
 	hdrs = [
 		":gen-hdrs",
 	],
+  includes = ["include/"],
     linkopts = [
         "-ldl",
     ],
@@ -136,18 +137,18 @@ genrule(
     cmd = """
         # Get the SSL root
         OPENSSL_ROOT=$$(dirname "$(location openssl_configure_script)")
-            
-        # For now, just build a generic 64-bit linux version.  
+
+        # For now, just build a generic 64-bit linux version.
         # FIXME Add other configs later
         OPENSSL_CFG_OPTS="linux-x86_64"
-        
+
         OPENSSL_CFG_OPTS+=" no-rc2"
         OPENSSL_CFG_OPTS+=" no-rc4"
         OPENSSL_CFG_OPTS+=" no-rc5"
         OPENSSL_CFG_OPTS+=" no-camellia"
         OPENSSL_CFG_OPTS+=" no-capienga"
         OPENSSL_CFG_OPTS+=" no-inline-asm"
-        
+
         # Unfortunately, I openssl doesn't allow out of tree builds (AFAIK)
         # cd into the sources for the next part
 	    pushd $${OPENSSL_ROOT}
@@ -158,9 +159,9 @@ genrule(
         CC=$(CC) AR=$(AR) make -C $${OPENSSL_ROOT} -j1
 
         #mkdir -p $(@D)/openssl
-		
+
         cp $${OPENSSL_ROOT}/libcrypto.a $(location libcrypto.a)
         cp $${OPENSSL_ROOT}/libssl.a $(location libssl.a)
-        cp -Lr $${OPENSSL_ROOT}/include/openssl/*.h $(@D)/include/openssl/. 
+        cp -Lr $${OPENSSL_ROOT}/include/openssl/*.h $(@D)/include/openssl/.
     """,
 )
