@@ -140,10 +140,10 @@ genrule(
 
         # For now, just build a generic 64-bit linux version.
         # FIXME Add other configs later
-        OPENSSL_CFG_OPTS="linux-x86_64"
-        if [ "$(TARGET_CPU)" -eq "bbb" ]; then
+        #OPENSSL_CFG_OPTS="linux-x86_64"
+        #if [ "$(TARGET_CPU)" -eq "bbb" ]; then
           OPENSSL_CFG_OPTS="linux-armv4"
-        fi
+        #fi
 
         OPENSSL_CFG_OPTS+=" no-rc2"
         OPENSSL_CFG_OPTS+=" no-rc4"
