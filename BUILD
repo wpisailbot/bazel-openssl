@@ -142,7 +142,7 @@ genrule(
         # FIXME Add other configs later
         #OPENSSL_CFG_OPTS="linux-x86_64"
         #if [ "$(TARGET_CPU)" -eq "bbb" ]; then
-          OPENSSL_CFG_OPTS="linux-armv4 -march=armv7-a"
+          OPENSSL_CFG_OPTS="linux-armv4" # -march=armv7-a"
         #fi
 
         OPENSSL_CFG_OPTS+=" no-rc2"
