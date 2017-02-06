@@ -141,11 +141,12 @@ genrule(
 
         # For now, just build a generic 64-bit linux version.
         # FIXME Add other configs later
-        #OPENSSL_CFG_OPTS="linux-x86_64"
+        OPENSSL_CFG_OPTS="linux-x86_64"
         CCC=`pwd`/external/org_linaro_components_toolchain_gcc_5_3_1/bin/arm-linux-gnueabihf-
-        #if [ "$(TARGET_CPU)" -eq "bbb" ]; then
+        CPU=$(TARGET_CPU)
+        if [ "$${CPU}" == "bbb" ]; then
           OPENSSL_CFG_OPTS="linux-armv4 --cross-compile-prefix=$${CCC}"
-        #fi
+        fi
 
         OPENSSL_CFG_OPTS+=" no-rc2"
         OPENSSL_CFG_OPTS+=" no-rc4"
