@@ -160,11 +160,11 @@ genrule(
 	    pushd $${OPENSSL_ROOT}
 		./Configure $${OPENSSL_CFG_OPTS}
         popd
-	
-	# Unpleasant reality is that we need to clean every time
-	make clean
-        CC=$(CC) make -C $${OPENSSL_ROOT} depend -j4
-        CC=$(CC) AR=$(AR) make -C $${OPENSSL_ROOT} -j4
+
+        # Unpleasant reality is that we need to clean every time
+        CC=$(CC) make -C $${OPENSSL_ROOT} clean
+        CC=$(CC) make -C $${OPENSSL_ROOT} depend -j8
+        CC=$(CC) AR=$(AR) make -C $${OPENSSL_ROOT} -j8
 
         #mkdir -p $(@D)/openssl
 
